@@ -18,3 +18,4 @@ class TodoItemAdmin(admin.ModelAdmin):
         "due_date",
         "is_completed",
     ]
+
