@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
 </head>
+{% comment %} Last: Update the list template to have a link from the to-do list name to the detail view for that to-do list {% endcomment %}
 <body>
     <main>
         <div>
@@ -17,10 +20,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for index in todo_list_list %}
+                    {% for todo_list_item in todo_list_list %}
                         <tr>
-                            <td>{{ index.name }}</td>
+                            <td>
+                                <a href="{% url 'todo_list_detail' id=todo_list_item.id %}">
+                                    {{ todo_list_item.name }}
+                                </a>
+                            </td>
+                            <td>{{ todo_list_item.items.count }}</td>
                         </tr>
+                        {% comment %} 4th: Update the list template to show the number of to-do items for a to-do list {% endcomment %}
                     {% endfor %}
                 </tbody>
             </table>
