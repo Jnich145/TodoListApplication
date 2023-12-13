@@ -36,27 +36,18 @@ def todo_list_create(request):
 
     return render(request, "todos/create.html", context)
 
-# def update_model_name(request, id):
-#   model_instance = ModelName.objects.get(id=id)
-#   if request.method == "POST":
-#     form = ModelForm(request.POST, instance=model_instance)
-#     if form.is_valid():
-#       # To redirect to the detail view of the model, use this:
-#       model_instance = form.save()
-#       return redirect("detail_url", id=model_instance.id)
+def todo_list_update(request, id):
+    todo_list = get_object_or_404(TodoList, id=id)
+    if request.method == "POST":
+        form = TodoListForm(request.POST, instance=todo_list)
+        if form.is_valid():
+            form = form.save()
+            return redirect("todo_list_detail", id=id)
+    else:
+        form = TodoListForm(instance=todo_list)
 
-    #   To add something to the model, like setting a user,
-    #   use something like this:
-    #   
-    #   model_instance = form.save(commit=False)
-    #   model_instance.user = request.user
-    #   model_instance.save()
-    #   return redirect("detail_url", id=model_instance.id)
-#   else:
-#     form = ModelForm(instance=model_instance)
-
-#   context = {
-#     "form": form
-#   }
-
-#   return render(request, "model_names/edit.html", context)
+    context = {
+        "todo_list_object": todo_list,
+        "edit_form": form,
+    }
+    return render(request, "todos/edit.html", context)

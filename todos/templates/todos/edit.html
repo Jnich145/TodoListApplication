@@ -4,18 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create A New List</title>
+    <title>Document</title>
 </head>
 <body>
     <main>
         <div>
-            <h1>Create a New List</h1>
+            <h1>Update list</h1>
             <form method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <button>Create</button>
-            </form>
+                {{ edit_form.as_p }}
+                <button type="submit">Update</button>
         </div>
-    </main>  
+    </main>
 </body>
 </html>
