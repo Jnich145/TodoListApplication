@@ -25,7 +25,11 @@
                 <tbody>
                     {% for task in todo_list.items.all %}
                     <tr>
-                        <td><a href="{% url 'todo_list_list' %}">{{ task.task }}</a></td>
+                        <td>
+                            <a href="{% url 'todo_item_update' id=task.id %}">
+                                {{ task.task }}
+                            </a>
+                        </td>
                         <td>{{ task.due_date }}</td>
                     </tr>
                     {% comment %} 4th: Update the list template to show the number of to-do items for a to-do list {% endcomment %}
